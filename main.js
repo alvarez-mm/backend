@@ -23,7 +23,8 @@ class Usuario {
     }
 
 	getBookNames() {
-		const newArray = this.libros.filter(item => item.libros === "titulo");
+		const newArray = this.libros.filter(item => item.titulo);
+        return newArray; 
     }
 }
 
