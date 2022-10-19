@@ -23,7 +23,7 @@ class Usuario {
     }
 
 	getBookNames() {
-		const newArray = this.libros.filter(item => item.titulo);
+		const newArray = this.libros.map(item => item.titulo)
         return newArray; 
     }
 }
@@ -47,3 +47,5 @@ usuario1.addBook("El libro de la Selva", "Rudyard Kipling");
 console.log (usuario1);
 
 console.log (usuario1.getBookNames());
+
+usuario1.getBookNames();
