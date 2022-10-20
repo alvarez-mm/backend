@@ -56,4 +56,11 @@ class Contenedor {
 
 let contenedor = new Contenedor("productos.txt")
 
-contenedor.save({nombre: "remera", precio: 1000, thumbnail: "https://www.cuestablanca.com/remera-manga-corta/p"})
+
+metodos=async()=>{
+    await contenedor.save({nombre: "remera", precio: 1000, thumbnail: "https://www.cuestablanca.com/remera-manga-corta/p"});
+    await contenedor.save({nombre: "pantalon", precio: 6000, thumbnail: "https://www.cuestablanca.com/pantalon/p"});
+    await contenedor.save({nombre: "campera", precio: 9000, thumbnail: "https://www.cuestablanca.com/campera/p"});
+}
+
+metodos()
