@@ -13,11 +13,14 @@ class Contenedor {
                 let result = JSON.parse(info);
 
                 if (result.length>0) {
-                let lastId
+                let lastId = result [result.length-1].id+1
                 let newProduct = {
                     id: lastId,
                     ...producto
                 }
+                result.push(newProduct);
+                    await fs.promises.writeFile(this.archivo, JSON.stringify(result, null, 2))
+                return lastId;
             } else {
                 let lastId = 1
                 let newProduct = {
