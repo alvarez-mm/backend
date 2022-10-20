@@ -9,6 +9,25 @@ class Contenedor {
         try {
             
             if(fs.existsSync(this.archivo)){
+                let info = await fs.promises.readFile(this.archivo , "utf8");
+                let result = JSON.parse(info);
+
+                if (result.length>0) {
+                let lastId
+                let newProduct = {
+                    id: lastId,
+                    ...producto
+                }
+            } else {
+                let lastId = 1
+                let newProduct = {
+                    id: lastId,
+                    ...producto
+                }
+                result.push(newProduct);
+                    await fs.promises.writeFile(this.archivo, JSON.stringify(result, null, 2))
+                return lastId;
+            }
 
             } else {
                 let newProduct= {
@@ -18,7 +37,7 @@ class Contenedor {
                     thumbnail: producto.thumbnail
                 }
             
-            await fs.promises.writeFile(this.archivo, [newProduct]);
+            await fs.promises.writeFile(this.archivo, JSON.stringify ([newProduct], null, 2));
             return 1;
             
             }

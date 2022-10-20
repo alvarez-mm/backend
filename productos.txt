@@ -1,0 +1,8 @@
+[
+  {
+    "id": 1,
+    "nombre": "remera",
+    "precio": 1000,
+    "thumbnail": "https://www.cuestablanca.com/remera-manga-corta/p"
+  }
+]
