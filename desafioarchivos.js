@@ -51,8 +51,25 @@ class Contenedor {
         }
 
     }
+        getAll = async () => {
+            try {
+                if(fs.existsSync(this.archivo)) {
+                    let info = await fs.promises.readFile(this.archivo, "utf8")
+                
+                let result = JSON.parse(info);
+                return result;
 
-}
+                } else {
+                    return "No se encontró el archivo"
+                }
+            } catch (error) {
+
+            }
+        }
+
+    }
+
+
 
 let contenedor = new Contenedor("productos.txt")
 
@@ -61,6 +78,8 @@ metodos=async()=>{
     await contenedor.save({nombre: "remera", precio: 1000, thumbnail: "https://www.cuestablanca.com/remera-manga-corta/p"});
     await contenedor.save({nombre: "pantalon", precio: 6000, thumbnail: "https://www.cuestablanca.com/pantalon/p"});
     await contenedor.save({nombre: "campera", precio: 9000, thumbnail: "https://www.cuestablanca.com/campera/p"});
+    console.log (await contenedor.getAll())
 }
 
 metodos()
+
