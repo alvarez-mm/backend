@@ -67,6 +67,43 @@ class Contenedor {
             }
         }
 
+
+        getById = async(number) => {
+            let productos = await this.getAll()
+            const result = productos.filter(item => item.id === number);
+            try {
+                
+                return (result) 
+
+            } catch (error) {
+
+            }
+        }
+
+
+        deleteById = async(number) => {
+            let productos = await this.getAll()
+            let result = (productos.slice(number));
+            try {
+
+                return fs.writeFileSync(this.archivo, (result, null, 2));
+
+            } catch (error) {
+
+            }
+        }
+
+
+        deleteAll = async(number) => {
+            try {
+                
+                return fs.unlinkSync(this.archivo);
+
+            } catch (error) {
+
+            }
+        }
+            
     }
 
 
@@ -78,7 +115,10 @@ metodos=async()=>{
     await contenedor.save({nombre: "remera", precio: 1000, thumbnail: "https://www.cuestablanca.com/remera-manga-corta/p"});
     await contenedor.save({nombre: "pantalon", precio: 6000, thumbnail: "https://www.cuestablanca.com/pantalon/p"});
     await contenedor.save({nombre: "campera", precio: 9000, thumbnail: "https://www.cuestablanca.com/campera/p"});
-    console.log (await contenedor.getAll())
+    console.log (await contenedor.getAll());
+    console.log (await contenedor.getById(2));
+    await contenedor.deleteById(2);
+    await contenedor.deleteAll();
 }
 
 metodos()
