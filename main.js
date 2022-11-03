@@ -1,5 +1,15 @@
 const fs = require ("fs");
 
+
+// DESAFIO SERVIDOR
+
+const express = require ("express");
+const aplicacion = express();
+const port = 2000;
+
+//---------
+
+
 class Contenedor {
 	constructor (archivo) {
 		this.archivo = archivo;
@@ -115,11 +125,43 @@ metodos=async()=>{
     await contenedor.save({nombre: "remera", precio: 1000, thumbnail: "https://www.cuestablanca.com/remera-manga-corta/p"});
     await contenedor.save({nombre: "pantalon", precio: 6000, thumbnail: "https://www.cuestablanca.com/pantalon/p"});
     await contenedor.save({nombre: "campera", precio: 9000, thumbnail: "https://www.cuestablanca.com/campera/p"});
-    console.log (await contenedor.getAll());
-    console.log (await contenedor.getById(2));
-    await contenedor.deleteById(2);
-    await contenedor.deleteAll();
+//    console.log (await contenedor.getAll());
+//    console.log (await contenedor.getById(2));
+//    await contenedor.deleteById(2);
+//    await contenedor.deleteAll();
 }
 
 metodos()
+
+
+
+
+// ENDOPOINTS
+
+aplicacion.get("/productos", async (peticion, respuesta) => {
+    const all = await contenedor.getAll();
+    respuesta.json(all);
+
+});
+
+aplicacion.get("/productoRandom", async (peticion, respuesta) => {
+    const all = await contenedor.getAll();
+    const random = Math.floor(Math.random() * all.length);
+    const productoRandom = await contenedor.getById(random);
+    respuesta.json(productoRandom);
+
+});
+
+//---------
+
+
+// DESAFIO SERVIDOR
+
+const servidor = aplicacion.listen(port, () => {
+    console.log(`Servidor escuchando: ${servidor.address().port}`);
+});
+
+servidor.on("error", error => console.log(`Error: ${error}`));
+
+//-------
 
